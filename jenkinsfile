@@ -1,0 +1,28 @@
+pipeline {
+	agent any
+	
+	stages {
+    	stage('Build') {
+        	steps {
+            	// Assuming your application requires a build step
+            	sh 'npm install' // Replace with your build command, e.g., 'npm run build'
+                sh 'npm run build'
+        	} 
+    	}
+    	
+        stage('Test') {
+        	steps {
+            	// Assuming your application requires some tests
+            	sh 'npm test' // Replace with your test command
+        	}
+    	}
+    	
+        stage('Deploy') {
+        	steps {
+   	         // Assuming you have Docker installed and configured on the Jenkins server
+            	sh 'docker build -t  webApplicationCICD-docker' // Build Docker image from the current directory
+            	sh 'docker run -d -p 80:80 webApplicationCICD-docker' // Run the Docker container on port 80
+        	}
+    	}
+	}
+}
