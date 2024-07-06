@@ -21,7 +21,7 @@ pipeline {
         	steps {
    	         // Assuming you have Docker installed and configured on the Jenkins server
             	sh 'docker build -t  webApplicationCICD-docker' // Build Docker image from the current directory
-            	sh 'docker run -d -p 80:80 webApplicationCICD-docker' // Run the Docker container on port 80
+            	sh 'docker run -d -p 80:81 webApplicationCICD-docker' // Run the Docker container on port 80
         	}
     	}
 	}
